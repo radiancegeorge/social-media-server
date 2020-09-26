@@ -1,8 +1,15 @@
+require('dotenv').config();
 const mysql = require('mysql');
-const env = require('dotenv')
 const db = mysql.createConnection({
-    user,
-    password,
-    host,
-    database
+    host : process.env.host,
+    port : process.env.port,
+    user: process.env.user,
+    database: 'social_media',
+    password: process.env.password
+    
+});
+db.connect((err)=>{
+    if(err) throw err;
+    console.log('connected to db..')
 })
+module.exports = db;
